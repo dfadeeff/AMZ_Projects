@@ -69,14 +69,7 @@ generate_preprocessed_dataframe <- function(container, column, marketplace, hori
   #Create clean data series
   count_ts = ts(data = container[,z])
   container$clean_total <- count_ts
-  
-  h = horizon
-  training <- window(container$clean_total, end = length(container$clean_total) - h)
-  test <- window(container$clean_total, start = length(container$clean_total) - h + 1)
-  count_bats <- tbats(ts(log10(training),freq=365.25/7)) #Here, important!
-  pred <- forecast(count_bats, h=h)
-  
-  
+    
   return(container)
 }
 
